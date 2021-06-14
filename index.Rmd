@@ -17,7 +17,7 @@ library(tidyr)
 ```
 
 
-## Importación de datos climáticos de Liberia de un archico CSV
+### Importación de datos climáticos de Liberia de un archico CSV
 Se procede a importar los datos del clima de Liberia que se denomina como liberia_datos_climaticos.csv
 ```{r datos, echo=TRUE, message=FALSE, warning=FALSE}
 clima_datos <- read.csv("liberia_datos_climaticos.csv", sep = ",", na.strings = "", dec = "," )
@@ -34,7 +34,7 @@ clima_datos <- na.omit(clima_datos)
 
 
 
-## Renombramiento de los datos
+### Renombramiento de los datos
 ```{r nom, echo=TRUE, message=FALSE, warning=FALSE}
 clima_datos <- clima_datos %>%
   rename(Temperatura = Temperatura..Celsius.,
@@ -54,94 +54,6 @@ clima_datos <- clima_datos %>%
 
 
 ### Panel de histogramas en relación al clima de Liberia
-```{r fig.height=15, fig.width=15, message=FALSE, warning=FALSE, ,echo=TRUE}
-grid.arrange(ggplot(clima_datos, aes(y= Temperatura, group = 1)) + geom_histogram(
-  col = "#999900",
-  fill = "#666600"
-) +
-  ggtitle("Temperatura") + 
-  xlab("Frecuencia") +
-  ylab("Temperatura (°C)") +
-  scale_x_discrete(guide = guide_axis(n.dodge = 2)) +
-  theme_ipsum(
-    axis_text_size = 7,
-    ticks = TRUE,
-    axis = "y",
-    grid = "y,y"
-  ),
-ggplot(clima_datos, aes(y= Humedad, group = 1)) + geom_histogram(
-  col = "#CC6600",
-  fill = "#993300"
-) +
-  ggtitle("Humedad") + 
-  xlab("Frecuencia") +
-  ylab("Humedad (%)") +
-  scale_x_discrete(guide = guide_axis(n.dodge = 2)) +
-  theme_ipsum(
-    axis_text_size = 7,
-    ticks = TRUE,
-    axis = "y",
-    grid = "y,y"
-  ),
-ggplot(clima_datos, aes(y= Velocidad, group = 1)) + geom_histogram(
-  col = "#996699",
-  fill = "#CC99CC"
-) +
-  ggtitle("Velocidad") + 
-  xlab("Frecuencia") +
-  ylab("Velocidad (m/s)") +
-  scale_x_discrete(guide = guide_axis(n.dodge = 2)) +
-  theme_ipsum(
-    axis_text_size = 7,
-    ticks = TRUE,
-    axis = "y",
-    grid = "y,y"
-  ),
-ggplot(clima_datos, aes(y= Lluvia, group = 1)) + geom_histogram(
-  col = "#336699",
-  fill = "#003366"
-) +
-  ggtitle("Lluvia") + 
-  xlab("Frecuencia") +
-  ylab("Lluvia (mm)") +
-  scale_x_discrete(guide = guide_axis(n.dodge = 2)) +
-  theme_ipsum(
-    axis_text_size = 7,
-    ticks = TRUE,
-    axis = "y",
-    grid = "y,y"
-  ),
-ggplot(clima_datos, aes(y= Irradiación, group = 1)) + geom_histogram(
-  col = "#336633",
-  fill = "#669966"
-) +
-  ggtitle("Irradiación") + 
-  xlab("Frecuencia") +
-  ylab("Irradiación (Wm2)") +
-  scale_x_discrete(guide = guide_axis(n.dodge = 2)) +
-  theme_ipsum(
-    axis_text_size = 7,
-    ticks = TRUE,
-    axis = "y",
-    grid = "y,y"
-  ),
-ggplot(clima_datos, aes(y= Evaporación, group = 1)) + geom_histogram(
-  col = "#996666",
-  fill = "#663333"
-) +
-  ggtitle("Evaporación") + 
-  xlab("Frecuencia") +
-  ylab("Evaporación (mm)") +
-  scale_x_discrete(guide = guide_axis(n.dodge = 2)) +
-  theme_ipsum(
-    axis_text_size = 7,
-    ticks = TRUE,
-    axis = "y",
-    grid = "y,y"
-  ),
-nrow= 6, ncol =1)
-```
-
 ```{r fig.height=15, fig.width=15, message=FALSE, warning=FALSE, ,echo=TRUE}
 k <- ggplot(clima_datos, aes(y= Temperatura, group = 1)) + geom_histogram(
   col = "#999900",
@@ -295,7 +207,7 @@ j <- ggplot(datos_promediados, aes(x= Fecha, y= Evaporación, group = 1)) + geom
   ylab("Evaporación") +
   theme_ipsum()
 
-grid.arrange(r,q,w,u,t,j, nrow = 6, ncol = 1)
+grid.arrange(r,q,w,u,t,j, nrow = 3, ncol = 2)
 ```
 
 ### Gráfico de nubes de puntos del clima de Liberia del 2015 al 2019
@@ -342,5 +254,5 @@ w <- ggplot(clima_datos, aes(x = Fecha, y= Evaporación, group = 1)) + geom_poin
   xlab("Fechas") +
   ylab("Evaporación (mm)") +
   theme_ipsum()
-grid.arrange(f, e, s, l, z, w, nrow = 6, ncol = 1)
+grid.arrange(f, e, s, l, z, w, nrow = 2, ncol = 3)
 ```
